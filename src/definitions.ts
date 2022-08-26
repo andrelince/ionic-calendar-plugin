@@ -1,3 +1,11 @@
+import type { PermissionState } from '@capacitor/core';
+
 export interface CalendarPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  checkPermissions(): Promise<PermissionStatus>;
+  requestPermissions(): Promise<PermissionStatus>;
+  createCalendar(options: { name: string }): Promise<void>;
+}
+
+export interface PermissionStatus {
+  status: PermissionState;
 }

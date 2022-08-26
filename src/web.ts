@@ -1,10 +1,20 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { CalendarPlugin } from './definitions';
+import type {CalendarPlugin, PermissionStatus} from './definitions';
 
 export class CalendarWeb extends WebPlugin implements CalendarPlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+
+  async checkPermissions(): Promise<PermissionStatus> {
+    throw this.unimplemented('calendar plugin not available on web');
+  }
+
+  async requestPermissions(): Promise<PermissionStatus> {
+    throw this.unimplemented('calendar plugin not available on web');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  async createCalendar(options: { name: string }): Promise<void> {
+    throw this.unimplemented('calendar plugin not available on web');
   }
 }

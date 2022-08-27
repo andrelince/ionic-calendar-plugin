@@ -13,8 +13,11 @@
     "ios/Plugin/",
     "CalendarPlugin.podspec"
   ],
-  "author": "Wemovit",
+  "author": "wemovit",
   "license": "gpl-3.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wemovit/ionic-calendar-plugin.git"
@@ -28,7 +31,7 @@
     "native"
   ],
   "scripts": {
-    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify": "npm run verify:ios && npm run verify:web",
     "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",

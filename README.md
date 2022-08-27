@@ -32,6 +32,7 @@ Add the following to `info.plist` file:
 * [`createCalendar(...)`](#createcalendar)
 * [`createEvent(...)`](#createevent)
 * [`updateEvent(...)`](#updateevent)
+* [`deleteEvent(...)`](#deleteevent)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -103,6 +104,21 @@ updateEvent(options: EventUpdateOpts) => Promise<Event>
 | **`options`** | <code><a href="#eventupdateopts">EventUpdateOpts</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#event">Event</a>&gt;</code>
+
+--------------------
+
+
+### deleteEvent(...)
+
+```typescript
+deleteEvent(options: EventDeleteOpts) => Promise<any>
+```
+
+| Param         | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#eventdeleteopts">EventDeleteOpts</a></code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
 
@@ -215,6 +231,13 @@ Enables basic storage and retrieval of dates and times.
 | **`start`**    | <code><a href="#date">Date</a></code>                    |
 | **`end`**      | <code><a href="#date">Date</a></code>                    |
 | **`location`** | <code>{ name: string; lat: number; lon: number; }</code> |
+
+
+#### EventDeleteOpts
+
+| Prop        | Type                |
+| ----------- | ------------------- |
+| **`event`** | <code>string</code> |
 
 
 ### Type Aliases

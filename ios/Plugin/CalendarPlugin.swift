@@ -111,12 +111,10 @@ public class CalendarPlugin: CAPPlugin {
         var structuredLocation: EKStructuredLocation? = nil
         if let location = call.getObject("location") {
             structuredLocation = EKStructuredLocation(title: location["name", default: "no location"] as! String)
-
             let location = CLLocation(
                 latitude: location["lat", default: 0.0] as! CLLocationDegrees,
                 longitude: location["lon", default: 0.0] as! CLLocationDegrees
             )
-
             structuredLocation?.geoLocation = location
         }
         do {
@@ -125,6 +123,19 @@ public class CalendarPlugin: CAPPlugin {
             call.resolve(self.transformer.transformEKEvent(event) as PluginCallResultData)
         } catch {
             call.reject("Failed to update event: \(error)")
+        }
+    }
+    
+    @objc func deleteEvent(_ call: CAPPluginCall) {
+        guard let event = call.getString("event") else {
+            call.reject("Must provide a event id")
+            return
+        }
+        do {
+            try self.implementation.deleteEvent(eventId: event)
+            call.resolve()
+        } catch {
+            call.reject("Failed to delete event: \(error)")
         }
     }
 

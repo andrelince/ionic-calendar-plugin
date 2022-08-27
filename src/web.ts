@@ -9,6 +9,7 @@ import type {
   EventUpdateOpts,
   PermissionStatus
 } from './definitions';
+import {EventDeleteOpts} from "./definitions";
 
 export class CalendarWeb extends WebPlugin implements CalendarPlugin {
 
@@ -35,6 +36,12 @@ export class CalendarWeb extends WebPlugin implements CalendarPlugin {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   async updateEvent(options: EventUpdateOpts): Promise<Event> {
+    throw this.unimplemented('calendar plugin not available on web');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  async deleteEvent(options: EventDeleteOpts): Promise<any> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 }

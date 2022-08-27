@@ -45,8 +45,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Manage calendar events</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>Manage calendar events</string>
     <key>NSRemindersUsageDescription</key>
     <string>Manage calendar event reminders</string>
     <key>NSContactsUsageDescription</key>

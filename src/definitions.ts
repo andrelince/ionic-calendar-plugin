@@ -6,6 +6,7 @@ export interface CalendarPlugin {
   createCalendar(options: CalendarCreateOpts): Promise<Calendar>;
   createEvent(options: EventCreateOpts): Promise<Event>;
   updateEvent(options: EventUpdateOpts): Promise<Event>;
+  deleteEvent(options: EventDeleteOpts): Promise<any>;
 }
 
 export interface PermissionStatus {
@@ -38,6 +39,10 @@ export interface EventUpdateOpts {
     lat: number;
     lon: number;
   }
+}
+
+export interface EventDeleteOpts {
+  event: string;
 }
 
 export interface Calendar {

@@ -86,6 +86,15 @@ enum CalendarError: Error {
         return event
     }
     
+    @objc public func deleteEvent(
+        eventId: String
+    ) throws {
+        guard let event = self.store.event(withIdentifier: eventId) else {
+            throw CalendarError.NoEventFound(id: eventId)
+        }
+        try self.store.remove(event, span: EKSpan.thisEvent)
+    }
+    
     private func getCalendarByName(_ name: String, source: EKSource?) -> EKCalendar? {
         for cal in self.store.calendars(for: EKEntityType.event) {
             if cal.title == name && cal.source == source {

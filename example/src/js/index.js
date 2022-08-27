@@ -89,6 +89,20 @@ window.customElements.define(
                     </form>
                 </div>
               </ion-accordion>
+              <ion-accordion value="delete-event">
+                <ion-item slot="header" color="light">
+                  <ion-label>Delete Event</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <form id="delete-event-form" novalidate>
+                        <ion-item>
+                            <ion-label>Event</ion-label>
+                            <ion-input name="event" type="text" placeholder="Insert event id"></ion-input>                  
+                        </ion-item>
+                        <ion-button type="submit" expand="full">Submit</ion-button>
+                    </form>
+                </div>
+              </ion-accordion>
           </ion-accordion-group>
         </div>
       `;
@@ -167,6 +181,18 @@ window.customElements.define(
                     .updateEvent({event, title, start, end, location})
                     .then((event) => console.log("event updated", event))
                     .catch(err => console.error(`error on update event "${title}"`, err));
+            });
+
+        self.shadowRoot
+            .querySelector('#delete-event-form')
+            .addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const form = self.shadowRoot.getElementById('delete-event-form');
+                const event = form?.elements['event']?.value;
+                if(event) Calendar
+                    .deleteEvent({event})
+                    .then((event) => console.log("event deleted", event))
+                    .catch(err => console.error(`error on delete event "${event}"`, err));
             });
     }
   }

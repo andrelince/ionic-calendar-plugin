@@ -1,12 +1,26 @@
 # calendar-plugin
 
-Native calendar integration
+Capacitor plugin with native calendar integration for iOS (Android coming soon).
 
 ## Install
 
 ```bash
 npm install calendar-plugin
 npx cap sync
+```
+
+### Permissions
+
+#### iOS
+
+Add the following to `info.plist` file:
+```xml
+<key>NSCalendarsUsageDescription</key>
+<string>Manage calendar events</string>
+<key>NSRemindersUsageDescription</key>
+<string>Manage calendar event reminders</string>
+<key>NSContactsUsageDescription</key>
+<string>Manage calendar events</string>
 ```
 
 ## API
@@ -51,14 +65,14 @@ requestPermissions() => Promise<PermissionStatus>
 ### createCalendar(...)
 
 ```typescript
-createCalendar(options: CalendarCreateOpts) => Promise<any>
+createCalendar(options: CalendarCreateOpts) => Promise<Calendar>
 ```
 
 | Param         | Type                                                              |
 | ------------- | ----------------------------------------------------------------- |
 | **`options`** | <code><a href="#calendarcreateopts">CalendarCreateOpts</a></code> |
 
-**Returns:** <code>Promise&lt;any&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#calendar">Calendar</a>&gt;</code>
 
 --------------------
 
@@ -66,14 +80,14 @@ createCalendar(options: CalendarCreateOpts) => Promise<any>
 ### createEvent(...)
 
 ```typescript
-createEvent(options: EventCreateOpts) => Promise<any>
+createEvent(options: EventCreateOpts) => Promise<Event>
 ```
 
 | Param         | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`options`** | <code><a href="#eventcreateopts">EventCreateOpts</a></code> |
 
-**Returns:** <code>Promise&lt;any&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#event">Event</a>&gt;</code>
 
 --------------------
 
@@ -81,14 +95,14 @@ createEvent(options: EventCreateOpts) => Promise<any>
 ### updateEvent(...)
 
 ```typescript
-updateEvent(options: EventUpdateOpts) => Promise<any>
+updateEvent(options: EventUpdateOpts) => Promise<Event>
 ```
 
 | Param         | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`options`** | <code><a href="#eventupdateopts">EventUpdateOpts</a></code> |
 
-**Returns:** <code>Promise&lt;any&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#event">Event</a>&gt;</code>
 
 --------------------
 
@@ -103,11 +117,31 @@ updateEvent(options: EventUpdateOpts) => Promise<any>
 | **`status`** | <code><a href="#permissionstate">PermissionState</a></code> |
 
 
+#### Calendar
+
+| Prop           | Type                |
+| -------------- | ------------------- |
+| **`uniqueId`** | <code>string</code> |
+| **`title`**    | <code>string</code> |
+
+
 #### CalendarCreateOpts
 
 | Prop       | Type                |
 | ---------- | ------------------- |
 | **`name`** | <code>string</code> |
+
+
+#### Event
+
+| Prop             | Type                                                     |
+| ---------------- | -------------------------------------------------------- |
+| **`uniqueId`**   | <code>string</code>                                      |
+| **`calendarId`** | <code>string</code>                                      |
+| **`title`**      | <code>string</code>                                      |
+| **`start`**      | <code>string</code>                                      |
+| **`end`**        | <code>string</code>                                      |
+| **`location`**   | <code>{ name: string; lat: number; lon: number; }</code> |
 
 
 #### EventCreateOpts

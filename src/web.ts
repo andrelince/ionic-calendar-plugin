@@ -1,8 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
+  Calendar,
   CalendarCreateOpts,
   CalendarPlugin,
+  Event,
   EventCreateOpts,
   EventUpdateOpts,
   PermissionStatus
@@ -20,19 +22,19 @@ export class CalendarWeb extends WebPlugin implements CalendarPlugin {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  async createCalendar(options: CalendarCreateOpts): Promise<any> {
+  async createCalendar(options: CalendarCreateOpts): Promise<Calendar> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  async createEvent(options: EventCreateOpts): Promise<any> {
+  async createEvent(options: EventCreateOpts): Promise<Event> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  async updateEvent(options: EventUpdateOpts): Promise<any> {
+  async updateEvent(options: EventUpdateOpts): Promise<Event> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 }

@@ -99,5 +99,33 @@ public class CalendarPlugin: CAPPlugin {
             call.reject("Failed to create event: \(error)")
         }
     }
+    
+    @objc func updateEvent(_ call: CAPPluginCall) {
+        guard let event = call.getString("event") else {
+            call.reject("Must provide a event id")
+            return
+        }
+        let start = call.getDate("start")
+        let end = call.getDate("end")
+        let title = call.getString("title")
+        var structuredLocation: EKStructuredLocation? = nil
+        if let location = call.getObject("location") {
+            structuredLocation = EKStructuredLocation(title: location["name", default: "no location"] as! String)
+
+            let location = CLLocation(
+                latitude: location["lat", default: 0.0] as! CLLocationDegrees,
+                longitude: location["lon", default: 0.0] as! CLLocationDegrees
+            )
+
+            structuredLocation?.geoLocation = location
+        }
+        do {
+            let event = try self.implementation.updateEvent(
+                eventId: event, title: title, start: start, end: end, location: structuredLocation)
+            call.resolve(self.transformer.transformEKEvent(event) as PluginCallResultData)
+        } catch {
+            call.reject("Failed to update event: \(error)")
+        }
+    }
 
 }

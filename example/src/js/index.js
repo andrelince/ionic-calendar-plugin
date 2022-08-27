@@ -63,6 +63,32 @@ window.customElements.define(
                     </form>
                 </div>
               </ion-accordion>
+              <ion-accordion value="update-event">
+                <ion-item slot="header" color="light">
+                  <ion-label>Update Event</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <form id="update-event-form" novalidate>
+                        <ion-item>
+                            <ion-label>Event</ion-label>
+                            <ion-input name="event" type="text" placeholder="Insert event id"></ion-input>                  
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Title</ion-label>
+                            <ion-input name="title" type="text" placeholder="Insert event title"></ion-input>                  
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Start</ion-label>
+                            <input name="start" type="datetime-local">
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>End</ion-label>
+                            <input name="end" type="datetime-local">
+                        </ion-item>
+                        <ion-button type="submit" expand="full">Submit</ion-button>
+                    </form>
+                </div>
+              </ion-accordion>
           </ion-accordion-group>
         </div>
       `;
@@ -119,6 +145,28 @@ window.customElements.define(
                     .createEvent({calendar, title, start, end, location})
                     .then((event) => console.log("event created", event))
                     .catch(err => console.error(`error on create event "${title}"`, err));
+            });
+
+        self.shadowRoot
+            .querySelector('#update-event-form')
+            .addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const form = self.shadowRoot.getElementById('update-event-form');
+                const event = form?.elements['event']?.value;
+                const title = form?.elements['title']?.value;
+                let startV = form?.elements['start']?.value;
+                let endV = form?.elements['end']?.value;
+                const location = {
+                    name: 'Lisbon, Portugal',
+                    lat: 38.72474067326249,
+                    lon: -9.138574427705647
+                };
+                let start = startV ? new Date(startV) : null;
+                let end = endV ? new Date(endV) : null;
+                if(event) Calendar
+                    .updateEvent({event, title, start, end, location})
+                    .then((event) => console.log("event updated", event))
+                    .catch(err => console.error(`error on update event "${title}"`, err));
             });
     }
   }

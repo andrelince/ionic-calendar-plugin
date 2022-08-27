@@ -4,6 +4,7 @@ import EventKit
 enum CalendarError: Error {
     case NoCalendarSource
     case NoCalendarForName(name: String)
+    case NoEventFound(id: String)
 }
 
 @objc public class Calendar: NSObject {
@@ -52,6 +53,34 @@ enum CalendarError: Error {
         event.startDate = start
         event.endDate = end
         event.structuredLocation = location
+        
+        try self.store.save(event,span: EKSpan.thisEvent)
+        return event
+    }
+    
+    @objc public func updateEvent(
+        eventId: String,
+        title: String?,
+        start: Date?,
+        end: Date?,
+        location: EKStructuredLocation?
+    ) throws -> EKEvent {
+        guard let event = self.store.event(withIdentifier: eventId) else {
+            throw CalendarError.NoEventFound(id: eventId)
+        }
+        
+        if title != nil {
+            event.title = title
+        }
+        if start != nil {
+            event.startDate = start
+        }
+        if end != nil {
+            event.endDate = end
+        }
+        if location != nil {
+            event.structuredLocation = location
+        }
         
         try self.store.save(event,span: EKSpan.thisEvent)
         return event

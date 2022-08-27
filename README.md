@@ -17,6 +17,7 @@ npx cap sync
 * [`requestPermissions()`](#requestpermissions)
 * [`createCalendar(...)`](#createcalendar)
 * [`createEvent(...)`](#createevent)
+* [`updateEvent(...)`](#updateevent)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -50,12 +51,12 @@ requestPermissions() => Promise<PermissionStatus>
 ### createCalendar(...)
 
 ```typescript
-createCalendar(options: { name: string; }) => Promise<any>
+createCalendar(options: CalendarCreateOpts) => Promise<any>
 ```
 
-| Param         | Type                           |
-| ------------- | ------------------------------ |
-| **`options`** | <code>{ name: string; }</code> |
+| Param         | Type                                                              |
+| ------------- | ----------------------------------------------------------------- |
+| **`options`** | <code><a href="#calendarcreateopts">CalendarCreateOpts</a></code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -65,12 +66,27 @@ createCalendar(options: { name: string; }) => Promise<any>
 ### createEvent(...)
 
 ```typescript
-createEvent(options: { calendar: string; title: string; start: Date; end: Date; location?: { name: string; lat: number; lon: number; }; }) => Promise<any>
+createEvent(options: EventCreateOpts) => Promise<any>
 ```
 
-| Param         | Type                                                                                                                                                                      |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`options`** | <code>{ calendar: string; title: string; start: <a href="#date">Date</a>; end: <a href="#date">Date</a>; location?: { name: string; lat: number; lon: number; }; }</code> |
+| Param         | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#eventcreateopts">EventCreateOpts</a></code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### updateEvent(...)
+
+```typescript
+updateEvent(options: EventUpdateOpts) => Promise<any>
+```
+
+| Param         | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code><a href="#eventupdateopts">EventUpdateOpts</a></code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -85,6 +101,24 @@ createEvent(options: { calendar: string; title: string; start: Date; end: Date; 
 | Prop         | Type                                                        |
 | ------------ | ----------------------------------------------------------- |
 | **`status`** | <code><a href="#permissionstate">PermissionState</a></code> |
+
+
+#### CalendarCreateOpts
+
+| Prop       | Type                |
+| ---------- | ------------------- |
+| **`name`** | <code>string</code> |
+
+
+#### EventCreateOpts
+
+| Prop           | Type                                                     |
+| -------------- | -------------------------------------------------------- |
+| **`calendar`** | <code>string</code>                                      |
+| **`title`**    | <code>string</code>                                      |
+| **`start`**    | <code><a href="#date">Date</a></code>                    |
+| **`end`**      | <code><a href="#date">Date</a></code>                    |
+| **`location`** | <code>{ name: string; lat: number; lon: number; }</code> |
 
 
 #### Date
@@ -136,6 +170,17 @@ Enables basic storage and retrieval of dates and times.
 | **toUTCString**        | () =&gt; string                                                                                              | Returns a date converted to a string using Universal Coordinated Time (UTC).                                                            |
 | **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
 | **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
+
+
+#### EventUpdateOpts
+
+| Prop           | Type                                                     |
+| -------------- | -------------------------------------------------------- |
+| **`event`**    | <code>string</code>                                      |
+| **`title`**    | <code>string</code>                                      |
+| **`start`**    | <code><a href="#date">Date</a></code>                    |
+| **`end`**      | <code><a href="#date">Date</a></code>                    |
+| **`location`** | <code>{ name: string; lat: number; lon: number; }</code> |
 
 
 ### Type Aliases

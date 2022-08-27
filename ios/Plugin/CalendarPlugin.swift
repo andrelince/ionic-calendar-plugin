@@ -8,17 +8,17 @@ import EventKit
  */
 @objc(CalendarPlugin)
 public class CalendarPlugin: CAPPlugin {
-    private let implementation: Calendar!;
-    private let eventStore: EKEventStore!;
-    private let transformer: Transformer!;
-    
+    private let implementation: Calendar!
+    private let eventStore: EKEventStore!
+    private let transformer: Transformer!
+
     override public init(bridge: CAPBridgeProtocol, pluginId: String, pluginName: String) {
-        self.eventStore = EKEventStore();
-        self.implementation = Calendar(store: self.eventStore);
-        self.transformer = Transformer();
-        super.init(bridge: bridge, pluginId: pluginId, pluginName: pluginName);
+        self.eventStore = EKEventStore()
+        self.implementation = Calendar(store: self.eventStore)
+        self.transformer = Transformer()
+        super.init(bridge: bridge, pluginId: pluginId, pluginName: pluginName)
     }
-    
+
     @objc override public func checkPermissions(_ call: CAPPluginCall) {
         let state: String
         switch EKEventStore.authorizationStatus(for: EKEntityType.event) {
@@ -33,7 +33,7 @@ public class CalendarPlugin: CAPPlugin {
         }
         call.resolve(["status": state])
     }
-    
+
     @objc override public func requestPermissions(_ call: CAPPluginCall) {
         self.eventStore.requestAccess(to: EKEntityType.event) { [weak self] granted, error in
             if let error = error {
@@ -47,7 +47,7 @@ public class CalendarPlugin: CAPPlugin {
             self?.checkPermissions(call)
         }
     }
-    
+
     @objc func createCalendar(_ call: CAPPluginCall) {
         guard let name = call.getString("name") else {
             call.reject("Must provide a name for the calendar")
@@ -62,7 +62,7 @@ public class CalendarPlugin: CAPPlugin {
             call.reject("Failed to create calendar: \(error)")
         }
     }
-    
+
     @objc func createEvent(_ call: CAPPluginCall) {
         guard let calendar = call.getString("calendar") else {
             call.reject("Must provide a calendar name to associate the event")
@@ -80,7 +80,7 @@ public class CalendarPlugin: CAPPlugin {
             call.reject("Must provide a title for the event")
             return
         }
-        var structuredLocation: EKStructuredLocation? = nil
+        var structuredLocation: EKStructuredLocation?
         if let location = call.getObject("location") {
             structuredLocation = EKStructuredLocation(title: location["name", default: "no location"] as! String)
 
@@ -99,7 +99,7 @@ public class CalendarPlugin: CAPPlugin {
             call.reject("Failed to create event: \(error)")
         }
     }
-    
+
     @objc func updateEvent(_ call: CAPPluginCall) {
         guard let event = call.getString("event") else {
             call.reject("Must provide a event id")
@@ -108,7 +108,7 @@ public class CalendarPlugin: CAPPlugin {
         let start = call.getDate("start")
         let end = call.getDate("end")
         let title = call.getString("title")
-        var structuredLocation: EKStructuredLocation? = nil
+        var structuredLocation: EKStructuredLocation?
         if let location = call.getObject("location") {
             structuredLocation = EKStructuredLocation(title: location["name", default: "no location"] as! String)
             let location = CLLocation(
@@ -125,7 +125,7 @@ public class CalendarPlugin: CAPPlugin {
             call.reject("Failed to update event: \(error)")
         }
     }
-    
+
     @objc func deleteEvent(_ call: CAPPluginCall) {
         guard let event = call.getString("event") else {
             call.reject("Must provide a event id")

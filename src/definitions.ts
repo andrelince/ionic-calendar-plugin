@@ -26,7 +26,7 @@ export interface EventCreateOpts {
     name: string;
     lat: number;
     lon: number;
-  }
+  };
 }
 
 export interface EventUpdateOpts {
@@ -38,7 +38,7 @@ export interface EventUpdateOpts {
     name: string;
     lat: number;
     lon: number;
-  }
+  };
 }
 
 export interface EventDeleteOpts {
@@ -60,5 +60,5 @@ export interface Event {
     name: string;
     lat: number;
     lon: number;
-  }
+  };
 }

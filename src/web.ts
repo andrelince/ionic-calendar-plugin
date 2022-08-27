@@ -14,7 +14,13 @@ export class CalendarWeb extends WebPlugin implements CalendarPlugin {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  async createCalendar(options: { name: string }): Promise<void> {
+  async createCalendar(options: { name: string }): Promise<any> {
+    throw this.unimplemented('calendar plugin not available on web');
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  async createEvent(options: { calendar: string, title: string, start: Date, end: Date, location?: {name: string, lat: number, lon: number} }): Promise<any> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 }

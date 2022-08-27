@@ -23,7 +23,7 @@ window.customElements.define(
                       <ion-button id="cperm" expand="full">Check Permissions</ion-button>
                     </div>
               </ion-accordion>
-              <ion-accordion value="create">
+              <ion-accordion value="create-calendar">
                 <ion-item slot="header" color="light">
                   <ion-label>Create Calendar</ion-label>
                 </ion-item>
@@ -32,6 +32,32 @@ window.customElements.define(
                         <ion-item>
                             <ion-label>Name</ion-label>
                             <ion-input name="name" type="text" placeholder="Insert calendar name"></ion-input>                  
+                        </ion-item>
+                        <ion-button type="submit" expand="full">Submit</ion-button>
+                    </form>
+                </div>
+              </ion-accordion>
+              <ion-accordion value="create-event">
+                <ion-item slot="header" color="light">
+                  <ion-label>Create Event</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <form id="create-event-form">
+                        <ion-item>
+                            <ion-label>Calendar</ion-label>
+                            <ion-input name="calendar" type="text" placeholder="Insert calendar name"></ion-input>                  
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Title</ion-label>
+                            <ion-input name="title" type="text" placeholder="Insert event title"></ion-input>                  
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Start</ion-label>
+                            <input name="start" type="datetime-local">
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>End</ion-label>
+                            <input name="end" type="datetime-local">
                         </ion-item>
                         <ion-button type="submit" expand="full">Submit</ion-button>
                     </form>
@@ -73,6 +99,26 @@ window.customElements.define(
                         .createCalendar({name})
                         .then(() => console.log("calendar created"))
                         .catch(err => console.error(`error on create calendar ${name}`, err));
+            });
+
+        self.shadowRoot
+            .querySelector('#create-event-form')
+            .addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const form = self.shadowRoot.getElementById('create-event-form');
+                const calendar = form?.elements['calendar']?.value;
+                const title = form?.elements['title']?.value;
+                const start = new Date(form?.elements['start']?.value);
+                const end = new Date(form?.elements['end']?.value);
+                const location = {
+                    name: 'Lisbon, Portugal',
+                    lat: 38.72474067326249,
+                    lon: -9.138574427705647
+                };
+                if(calendar && title && start && end) Calendar
+                    .createEvent({calendar, title, start, end, location})
+                    .then((event) => console.log("event created", event))
+                    .catch(err => console.error(`error on create event "${title}"`, err));
             });
     }
   }

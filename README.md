@@ -49,12 +49,14 @@ requestPermissions() => Promise<PermissionStatus>
 ### createCalendar(...)
 
 ```typescript
-createCalendar(options: { name: string; }) => Promise<void>
+createCalendar(options: { name: string; }) => Promise<any>
 ```
 
 | Param         | Type                           |
 | ------------- | ------------------------------ |
 | **`options`** | <code>{ name: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
 

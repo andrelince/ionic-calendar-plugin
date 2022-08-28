@@ -11,6 +11,7 @@ import type {
   EventDeleteOpts,
 } from './definitions';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export class CalendarWeb extends WebPlugin implements CalendarPlugin {
   async checkPermissions(): Promise<PermissionStatus> {
     throw this.unimplemented('calendar plugin not available on web');
@@ -20,23 +21,20 @@ export class CalendarWeb extends WebPlugin implements CalendarPlugin {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async createCalendar(options: CalendarCreateOpts): Promise<Calendar> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async createEvent(options: EventCreateOpts): Promise<Event> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async updateEvent(options: EventUpdateOpts): Promise<Event> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async deleteEvent(options: EventDeleteOpts): Promise<any> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */

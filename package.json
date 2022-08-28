@@ -1,7 +1,7 @@
 {
-  "name": "ionic-calendar-plugin",
+  "name": "ion-calendar-plugin",
   "version": "0.0.1",
-  "description": "Native calendar integration",
+  "description": "Ionic native calendar integration",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -13,7 +13,7 @@
     "ios/Plugin/",
     "CalendarPlugin.podspec"
   ],
-  "author": "andregslincefaria",
+  "author": "andrelince",
   "license": "gpl-3.0",
   "repository": {
     "type": "git",

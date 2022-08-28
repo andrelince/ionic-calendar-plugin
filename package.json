@@ -13,14 +13,14 @@
     "ios/Plugin/",
     "CalendarPlugin.podspec"
   ],
-  "author": "Wemovit",
+  "author": "andregslincefaria",
   "license": "gpl-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wemovit/ionic-calendar-plugin.git"
+    "url": "git+https://github.com/andregslincefaria/ionic-calendar-plugin.git"
   },
   "bugs": {
-    "url": "https://github.com/wemovit/ionic-calendar-plugin/issues"
+    "url": "https://github.com/andregslincefaria/ionic-calendar-plugin/issues"
   },
   "keywords": [
     "capacitor",

@@ -1,6 +1,6 @@
 {
   "name": "ion-calendar-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Ionic native calendar integration",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -11,7 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CalendarPlugin.podspec"
+    "IonCalendarPlugin.podspec"
   ],
   "author": "andrelince",
   "license": "gpl-3.0",

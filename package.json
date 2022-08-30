@@ -1,5 +1,5 @@
 {
-  "name": "ion-calendar-plugin",
+  "name": "ionic-calendar-plugin",
   "version": "0.0.2",
   "description": "Ionic native calendar integration",
   "main": "dist/plugin.cjs.js",

@@ -5,7 +5,7 @@ Capacitor plugin with native calendar integration for iOS (Android coming soon).
 ## Install
 
 ```bash
-npm install calendar-plugin
+npm install ionic-calendar-plugin
 npx cap sync
 ```
 

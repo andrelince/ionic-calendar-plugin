@@ -1,10 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
-  Calendar,
+  ICalendar,
   CalendarCreateOpts,
   CalendarPlugin,
-  Event,
+  IEvent,
   EventCreateOpts,
   EventUpdateOpts,
   PermissionStatus,
@@ -20,15 +20,15 @@ export class CalendarWeb extends WebPlugin implements CalendarPlugin {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  async createCalendar(options: CalendarCreateOpts): Promise<Calendar> {
+  async createCalendar(options: CalendarCreateOpts): Promise<ICalendar> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  async createEvent(options: EventCreateOpts): Promise<Event> {
+  async createEvent(options: EventCreateOpts): Promise<IEvent> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 
-  async updateEvent(options: EventUpdateOpts): Promise<Event> {
+  async updateEvent(options: EventUpdateOpts): Promise<IEvent> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 

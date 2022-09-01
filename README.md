@@ -66,14 +66,14 @@ requestPermissions() => Promise<PermissionStatus>
 ### createCalendar(...)
 
 ```typescript
-createCalendar(options: CalendarCreateOpts) => Promise<Calendar>
+createCalendar(options: CalendarCreateOpts) => Promise<ICalendar>
 ```
 
 | Param         | Type                                                              |
 | ------------- | ----------------------------------------------------------------- |
 | **`options`** | <code><a href="#calendarcreateopts">CalendarCreateOpts</a></code> |
 
-**Returns:** <code>Promise&lt;<a href="#calendar">Calendar</a>&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#icalendar">ICalendar</a>&gt;</code>
 
 --------------------
 
@@ -81,14 +81,14 @@ createCalendar(options: CalendarCreateOpts) => Promise<Calendar>
 ### createEvent(...)
 
 ```typescript
-createEvent(options: EventCreateOpts) => Promise<Event>
+createEvent(options: EventCreateOpts) => Promise<IEvent>
 ```
 
 | Param         | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`options`** | <code><a href="#eventcreateopts">EventCreateOpts</a></code> |
 
-**Returns:** <code>Promise&lt;<a href="#event">Event</a>&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#ievent">IEvent</a>&gt;</code>
 
 --------------------
 
@@ -96,14 +96,14 @@ createEvent(options: EventCreateOpts) => Promise<Event>
 ### updateEvent(...)
 
 ```typescript
-updateEvent(options: EventUpdateOpts) => Promise<Event>
+updateEvent(options: EventUpdateOpts) => Promise<IEvent>
 ```
 
 | Param         | Type                                                        |
 | ------------- | ----------------------------------------------------------- |
 | **`options`** | <code><a href="#eventupdateopts">EventUpdateOpts</a></code> |
 
-**Returns:** <code>Promise&lt;<a href="#event">Event</a>&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#ievent">IEvent</a>&gt;</code>
 
 --------------------
 
@@ -133,7 +133,7 @@ deleteEvent(options: EventDeleteOpts) => Promise<any>
 | **`status`** | <code><a href="#permissionstate">PermissionState</a></code> |
 
 
-#### Calendar
+#### ICalendar
 
 | Prop           | Type                |
 | -------------- | ------------------- |
@@ -148,7 +148,7 @@ deleteEvent(options: EventDeleteOpts) => Promise<any>
 | **`name`** | <code>string</code> |
 
 
-#### Event
+#### IEvent
 
 | Prop             | Type                                                     |
 | ---------------- | -------------------------------------------------------- |

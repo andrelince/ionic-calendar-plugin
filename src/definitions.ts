@@ -3,9 +3,9 @@ import type { PermissionState } from '@capacitor/core';
 export interface CalendarPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
-  createCalendar(options: CalendarCreateOpts): Promise<Calendar>;
-  createEvent(options: EventCreateOpts): Promise<Event>;
-  updateEvent(options: EventUpdateOpts): Promise<Event>;
+  createCalendar(options: CalendarCreateOpts): Promise<ICalendar>;
+  createEvent(options: EventCreateOpts): Promise<IEvent>;
+  updateEvent(options: EventUpdateOpts): Promise<IEvent>;
   deleteEvent(options: EventDeleteOpts): Promise<any>;
 }
 
@@ -45,12 +45,12 @@ export interface EventDeleteOpts {
   event: string;
 }
 
-export interface Calendar {
+export interface ICalendar {
   uniqueId: string;
   title: string;
 }
 
-export interface Event {
+export interface IEvent {
   uniqueId: string;
   calendarId: string;
   title: string;

@@ -15,7 +15,7 @@
   "dependencies": {
     "@capacitor/core": "latest",
     "@capacitor/splash-screen": "latest",
-    "calendar-plugin": "file:..",
+    "ionic-calendar-plugin": "file:..",
     "@capacitor/ios": "^4.0.0",
     "@capacitor/android": "^4.0.0",
     "@ionic/core": "^6.2.4"

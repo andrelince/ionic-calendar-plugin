@@ -1,6 +1,6 @@
 import { SplashScreen } from '@capacitor/splash-screen';
 import { loadIonicComponents } from './ionic';
-import { Calendar } from 'calendar-plugin';
+import { Calendar } from 'ionic-calendar-plugin';
 
 loadIonicComponents();
 

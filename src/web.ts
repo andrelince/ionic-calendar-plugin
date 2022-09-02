@@ -10,6 +10,7 @@ import type {
   PermissionStatus,
   EventDeleteOpts,
   Results,
+  EventListOpts,
 } from './definitions';
 
 export class CalendarWeb extends WebPlugin implements CalendarPlugin {
@@ -38,6 +39,10 @@ export class CalendarWeb extends WebPlugin implements CalendarPlugin {
   }
 
   listCalendars(): Promise<Results<ICalendar>> {
+    throw this.unimplemented('calendar plugin not available on web');
+  }
+
+  listEvents(options: EventListOpts): Promise<Results<IEvent>> {
     throw this.unimplemented('calendar plugin not available on web');
   }
 }

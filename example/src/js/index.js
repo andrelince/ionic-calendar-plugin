@@ -112,6 +112,29 @@ window.customElements.define(
                     <ion-list><!-- placeholder --></ion-list>
                 </div>
               </ion-accordion>
+              <ion-accordion value="list-events">
+                <ion-item slot="header" color="light">
+                  <ion-label>List Events</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <form id="list-events-form" novalidate>
+                        <ion-item>
+                            <ion-label>Calendars</ion-label>
+                            <ion-input name="calendars" type="text" placeholder="Insert calendars (split by ,)"></ion-input>                  
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Start</ion-label>
+                            <input name="start" type="datetime-local">
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>End</ion-label>
+                            <input name="end" type="datetime-local">
+                        </ion-item>
+                        <ion-button type="submit" expand="full">Submit</ion-button>
+                    </form>
+                    <ion-list><!-- placeholder --></ion-list>
+                </div>
+              </ion-accordion>
           </ion-accordion-group>
         </div>
       `;
@@ -119,6 +142,15 @@ window.customElements.define(
 
     connectedCallback() {
       const self = this;
+
+      const newIonItem = (title, bgHex) => {
+        const item = document.createElement('ion-item');
+        const label = document.createElement('ion-label');
+        label.style.color = bgHex;
+        label.innerHTML = title;
+        item.appendChild(label);
+        return item;
+      };
 
       self.shadowRoot
         .querySelector('#rperm')
@@ -216,19 +248,35 @@ window.customElements.define(
           const divEl =
             self.shadowRoot.getElementById('list-calendars').nextElementSibling;
           divEl.innerHTML = null;
-          const newIonItem = (title, bgHex) => {
-            const item = document.createElement('ion-item');
-            const label = document.createElement('ion-label');
-            label.style.color = bgHex;
-            label.innerHTML = title;
-            item.appendChild(label);
-            return item;
-          };
           Calendar.listCalendars().then(data => {
             data.results.forEach(calendar =>
               divEl.appendChild(newIonItem(calendar.title, calendar.color)),
             );
           });
+        });
+
+      self.shadowRoot
+        .querySelector('#list-events-form')
+        .addEventListener('submit', async function (e) {
+          e.preventDefault();
+          const form = self.shadowRoot.getElementById('list-events-form');
+          const list = form.nextElementSibling;
+          const calendars =
+            form?.elements['calendars']?.value?.split(',') || [];
+          let startV = form?.elements['start']?.value;
+          let endV = form?.elements['end']?.value;
+          let start = startV ? new Date(startV) : null;
+          let end = endV ? new Date(endV) : null;
+          list.innerHTML = null;
+          if (start && end) {
+            Calendar.listEvents({ start, end, calendars }).then(data =>
+              data.results.forEach(event =>
+                list.appendChild(newIonItem(event.title, null)),
+              ),
+            );
+          } else {
+            list.innerHTML = 'start and end are required';
+          }
         });
     }
   },

@@ -99,6 +99,27 @@ enum CalendarError: Error {
         return self.store.calendars(for: EKEntityType.event)
     }
 
+    @objc public func listEvents(
+        start: Date,
+        end: Date,
+        calendars: [String]
+    ) -> [EKEvent] {
+        var calendarList = [EKCalendar]()
+        for cal in self.listCalendars() {
+            if calendars.contains(cal.calendarIdentifier) || calendars.contains(cal.title) {
+                calendarList.append(cal)
+            }
+        }
+
+        let predicate = self.store.predicateForEvents(
+            withStart: start,
+            end: end,
+            calendars: calendarList.isEmpty ? nil : calendarList
+        )
+
+        return self.store.events(matching: predicate)
+    }
+
     private func getCalendarByName(_ name: String, source: EKSource?) -> EKCalendar? {
         for cal in self.listCalendars() {
             if cal.title == name && cal.source == source {

@@ -146,4 +146,24 @@ public class CalendarPlugin: CAPPlugin {
         call.resolve(self.transformer.transformList(calendars))
     }
 
+    @objc func listEvents(_ call: CAPPluginCall) {
+        guard let start = call.getDate("start") else {
+            call.reject("Must provide a start date")
+            return
+        }
+        guard let end = call.getDate("end") else {
+            call.reject("Must provide an end date")
+            return
+        }
+        guard let calendars = call.getArray("calendars") as? [String] else {
+            call.reject("calendars must be an Array of string")
+            return
+        }
+
+        let events = self.implementation.listEvents(start: start, end: end, calendars: calendars).map {
+            (event) -> [String: Any?] in self.transformer.transformEKEvent(event)
+        }
+        call.resolve(self.transformer.transformList(events))
+    }
+
 }

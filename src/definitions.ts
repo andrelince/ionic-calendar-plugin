@@ -8,6 +8,7 @@ export interface CalendarPlugin {
   createEvent(options: EventCreateOpts): Promise<IEvent>;
   updateEvent(options: EventUpdateOpts): Promise<IEvent>;
   deleteEvent(options: EventDeleteOpts): Promise<any>;
+  listEvents(options: EventListOpts): Promise<Results<IEvent>>;
 }
 
 export interface PermissionStatus {
@@ -44,6 +45,12 @@ export interface EventUpdateOpts {
 
 export interface EventDeleteOpts {
   event: string;
+}
+
+export interface EventListOpts {
+  start: Date;
+  end: Date;
+  calendars: string[];
 }
 
 export interface ICalendar {

@@ -11,4 +11,5 @@ CAP_PLUGIN(CalendarPlugin, "Calendar",
            CAP_PLUGIN_METHOD(updateEvent, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(deleteEvent, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(listCalendars, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(listEvents, CAPPluginReturnPromise);
 )

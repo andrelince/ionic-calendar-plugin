@@ -34,6 +34,7 @@ Add the following to `info.plist` file:
 * [`createEvent(...)`](#createevent)
 * [`updateEvent(...)`](#updateevent)
 * [`deleteEvent(...)`](#deleteevent)
+* [`listEvents(...)`](#listevents)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -131,6 +132,21 @@ deleteEvent(options: EventDeleteOpts) => Promise<any>
 | **`options`** | <code><a href="#eventdeleteopts">EventDeleteOpts</a></code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### listEvents(...)
+
+```typescript
+listEvents(options: EventListOpts) => Promise<Results<IEvent>>
+```
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#eventlistopts">EventListOpts</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#results">Results</a>&lt;<a href="#ievent">IEvent</a>&gt;&gt;</code>
 
 --------------------
 
@@ -258,6 +274,15 @@ Enables basic storage and retrieval of dates and times.
 | Prop        | Type                |
 | ----------- | ------------------- |
 | **`event`** | <code>string</code> |
+
+
+#### EventListOpts
+
+| Prop            | Type                                  |
+| --------------- | ------------------------------------- |
+| **`start`**     | <code><a href="#date">Date</a></code> |
+| **`end`**       | <code><a href="#date">Date</a></code> |
+| **`calendars`** | <code>string[]</code>                 |
 
 
 ### Type Aliases

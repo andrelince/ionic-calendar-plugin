@@ -24,4 +24,10 @@ import EventKit
             "title": calendar.title
         ]
     }
+
+    public func transformList(_ items: [Any]) -> [String: [Any]] {
+        return [
+            "results": items
+        ]
+    }
 }

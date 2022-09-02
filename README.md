@@ -29,6 +29,7 @@ Add the following to `info.plist` file:
 
 * [`checkPermissions()`](#checkpermissions)
 * [`requestPermissions()`](#requestpermissions)
+* [`listCalendars()`](#listcalendars)
 * [`createCalendar(...)`](#createcalendar)
 * [`createEvent(...)`](#createevent)
 * [`updateEvent(...)`](#updateevent)
@@ -59,6 +60,17 @@ requestPermissions() => Promise<PermissionStatus>
 ```
 
 **Returns:** <code>Promise&lt;<a href="#permissionstatus">PermissionStatus</a>&gt;</code>
+
+--------------------
+
+
+### listCalendars()
+
+```typescript
+listCalendars() => Promise<Results<ICalendar>>
+```
+
+**Returns:** <code>Promise&lt;<a href="#results">Results</a>&lt;<a href="#icalendar">ICalendar</a>&gt;&gt;</code>
 
 --------------------
 
@@ -131,6 +143,13 @@ deleteEvent(options: EventDeleteOpts) => Promise<any>
 | Prop         | Type                                                        |
 | ------------ | ----------------------------------------------------------- |
 | **`status`** | <code><a href="#permissionstate">PermissionState</a></code> |
+
+
+#### Results
+
+| Prop          | Type             |
+| ------------- | ---------------- |
+| **`results`** | <code>T[]</code> |
 
 
 #### ICalendar

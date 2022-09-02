@@ -3,6 +3,7 @@ import type { PermissionState } from '@capacitor/core';
 export interface CalendarPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
+  listCalendars(): Promise<Results<ICalendar>>;
   createCalendar(options: CalendarCreateOpts): Promise<ICalendar>;
   createEvent(options: EventCreateOpts): Promise<IEvent>;
   updateEvent(options: EventUpdateOpts): Promise<IEvent>;
@@ -61,4 +62,8 @@ export interface IEvent {
     lat: number;
     lon: number;
   };
+}
+
+export interface Results<T> {
+  results: T[];
 }

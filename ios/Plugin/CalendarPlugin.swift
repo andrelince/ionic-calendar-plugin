@@ -139,4 +139,11 @@ public class CalendarPlugin: CAPPlugin {
         }
     }
 
+    @objc func listCalendars(_ call: CAPPluginCall) {
+        let calendars = self.implementation.listCalendars().map {
+            (calendar) -> [String: Any?] in self.transformer.transformEKCalendar(calendar)
+        }
+        call.resolve(self.transformer.transformList(calendars))
+    }
+
 }

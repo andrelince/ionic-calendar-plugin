@@ -1,5 +1,5 @@
-build-ios-prod:
+build-ios:
 	@yarn build
 	@npx cap sync ios
-run-ios: build-ios-prod
+run-ios: build-ios
 	@npx cap open ios

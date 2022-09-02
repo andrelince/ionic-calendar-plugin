@@ -103,6 +103,15 @@ window.customElements.define(
                     </form>
                 </div>
               </ion-accordion>
+              <ion-accordion value="list-calendars">
+                <ion-item slot="header" color="light">
+                  <ion-label>List Calendars</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                    <ion-button id="list-calendars" expand="full">List Calendars</ion-button>
+                    <ion-list><!-- placeholder --></ion-list>
+                </div>
+              </ion-accordion>
           </ion-accordion-group>
         </div>
       `;
@@ -199,6 +208,26 @@ window.customElements.define(
               .catch(err =>
                 console.error(`error on delete event "${event}"`, err),
               );
+        });
+
+      self.shadowRoot
+        .querySelector('#list-calendars')
+        .addEventListener('click', async function () {
+          const divEl =
+            self.shadowRoot.getElementById('list-calendars').nextElementSibling;
+          divEl.innerHTML = null;
+          const newIonItem = title => {
+            const item = document.createElement('ion-item');
+            const label = document.createElement('ion-label');
+            label.innerHTML = title;
+            item.appendChild(label);
+            return item;
+          };
+          Calendar.listCalendars().then(data => {
+            data.results.forEach(calendar =>
+              divEl.appendChild(newIonItem(calendar.title)),
+            );
+          });
         });
     }
   },

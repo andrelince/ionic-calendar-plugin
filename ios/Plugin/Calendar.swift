@@ -95,8 +95,12 @@ enum CalendarError: Error {
         try self.store.remove(event, span: EKSpan.thisEvent)
     }
 
+    @objc public func listCalendars() -> [EKCalendar] {
+        return self.store.calendars(for: EKEntityType.event)
+    }
+
     private func getCalendarByName(_ name: String, source: EKSource?) -> EKCalendar? {
-        for cal in self.store.calendars(for: EKEntityType.event) {
+        for cal in self.listCalendars() {
             if cal.title == name && cal.source == source {
                 return cal
             }

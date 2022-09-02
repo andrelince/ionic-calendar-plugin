@@ -49,6 +49,7 @@ export interface EventDeleteOpts {
 export interface ICalendar {
   uniqueId: string;
   title: string;
+  color: string;
 }
 
 export interface IEvent {

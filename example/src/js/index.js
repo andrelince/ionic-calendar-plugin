@@ -216,16 +216,17 @@ window.customElements.define(
           const divEl =
             self.shadowRoot.getElementById('list-calendars').nextElementSibling;
           divEl.innerHTML = null;
-          const newIonItem = title => {
+          const newIonItem = (title, bgHex) => {
             const item = document.createElement('ion-item');
             const label = document.createElement('ion-label');
+            label.style.color = bgHex;
             label.innerHTML = title;
             item.appendChild(label);
             return item;
           };
           Calendar.listCalendars().then(data => {
             data.results.forEach(calendar =>
-              divEl.appendChild(newIonItem(calendar.title)),
+              divEl.appendChild(newIonItem(calendar.title, calendar.color)),
             );
           });
         });

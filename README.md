@@ -158,6 +158,7 @@ deleteEvent(options: EventDeleteOpts) => Promise<any>
 | -------------- | ------------------- |
 | **`uniqueId`** | <code>string</code> |
 | **`title`**    | <code>string</code> |
+| **`color`**    | <code>string</code> |
 
 
 #### CalendarCreateOpts
